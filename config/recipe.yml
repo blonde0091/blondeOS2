@@ -1,20 +1,21 @@
 # image will be published to ghcr.io/<user>/<name>
-name: template
+name: blondeOS2
 # description will be included in the image's metadata
-description: This is my personal OS image.
+description: This is my personal image made on bluebuild
 
 # the base image to build on top of (FROM) and the version tag to use
-base-image: ghcr.io/ublue-os/silverblue-main
-image-version: 39 # latest is also supported if you want new updates ASAP
+base-image: ghcr.io/ublue-os/kinoite-main
+image-version: latest # latest is also supported if you want new updates ASAP
 
 # module configuration, executed in order
 # you can include multiple instances of the same module
 modules:
   - type: files
     files:
-      - usr: /usr # copies config/files/usr into your image's /usr.
-                  # put configuration files you want in /etc/ on a booted system 
-                  # in /usr/etc/ in the image. read more in files module reference.
+      - usr:
+          /usr # copies config/files/usr into your image's /usr.
+          # put configuration files you want in /etc/ on a booted system
+          # in /usr/etc/ in the image. read more in files module reference.
 
   - type: rpm-ostree
     repos:
@@ -46,4 +47,3 @@ modules:
       # - org.gnome.eog
 
   - type: signing # this sets up the proper policy & signing files for signed images to work fully
-
